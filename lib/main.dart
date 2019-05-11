@@ -72,6 +72,7 @@ class _HomeState extends State<Home> {
         if (_formKey.currentState.validate()) {
           _converter();
         }
+        FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Text('Calcular'),
       color: Colors.blueAccent,
@@ -79,7 +80,10 @@ class _HomeState extends State<Home> {
 
     TextFormField tempCelsius = TextFormField(
         decoration: InputDecoration(
-            labelText: 'Graus Celsius', labelStyle: styleDecoration, border: OutlineInputBorder(), suffixText: "ºC"),
+            labelText: 'Graus Celsius',
+            labelStyle: TextStyle(color: Colors.black),
+            border: OutlineInputBorder(),
+            suffixText: "ºC"),
         keyboardType: TextInputType.number,
         textAlign: TextAlign.center,
         style: styleField,
@@ -93,7 +97,10 @@ class _HomeState extends State<Home> {
     TextFormField tempFahrenheit = TextFormField(
       enabled: false,
       decoration: InputDecoration(
-          labelText: 'Graus Fahrenheit', labelStyle: TextStyle(color: Colors.black), border: OutlineInputBorder(), suffixText: "ºF"),
+          labelText: 'Graus Fahrenheit',
+          labelStyle: TextStyle(color: Colors.black),
+          border: OutlineInputBorder(),
+          suffixText: "ºF"),
       keyboardType: TextInputType.number,
       textAlign: TextAlign.center,
       style: styleField,
