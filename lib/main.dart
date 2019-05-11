@@ -60,7 +60,8 @@ class _HomeState extends State<Home> {
       ],
     );
 
-    Image imgLogo = Image.asset("assets/images/logo.png", height: 70, width: 70);
+    Image imgLogo =
+        Image.asset("assets/images/logo.png", height: 70, width: 70);
 
     TextStyle styleDecoration =
         TextStyle(color: Colors.blueAccent, fontSize: 16);
@@ -68,7 +69,7 @@ class _HomeState extends State<Home> {
 
     RaisedButton raisedButton = RaisedButton(
       onPressed: () {
-        if (_formKey.currentState.validate()){
+        if (_formKey.currentState.validate()) {
           _converter();
         }
       },
@@ -78,7 +79,7 @@ class _HomeState extends State<Home> {
 
     TextFormField tempCelsius = TextFormField(
         decoration: InputDecoration(
-            labelText: 'Graus Celsius', labelStyle: styleDecoration),
+            labelText: 'Graus Celsius', labelStyle: styleDecoration, border: OutlineInputBorder(), suffixText: "ºC"),
         keyboardType: TextInputType.number,
         textAlign: TextAlign.center,
         style: styleField,
@@ -90,8 +91,9 @@ class _HomeState extends State<Home> {
         });
 
     TextFormField tempFahrenheit = TextFormField(
+      enabled: false,
       decoration: InputDecoration(
-          labelText: 'Graus Fahrenheit', labelStyle: styleDecoration),
+          labelText: 'Graus Fahrenheit', labelStyle: TextStyle(color: Colors.black), border: OutlineInputBorder(), suffixText: "ºF"),
       keyboardType: TextInputType.number,
       textAlign: TextAlign.center,
       style: styleField,
@@ -106,7 +108,7 @@ class _HomeState extends State<Home> {
     Container containerPaddingFields = Container(
       padding: EdgeInsets.all(8.0),
       child: Column(
-        children: <Widget>[tempCelsius, tempFahrenheit],
+        children: <Widget>[tempCelsius, Divider(), tempFahrenheit],
       ),
     );
 
