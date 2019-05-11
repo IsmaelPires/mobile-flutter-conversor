@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
       ],
     );
 
-    Icon icon = Icon(Icons.wb_sunny, size: 70, color: Colors.yellow);
+    Image imgLogo = Image.asset("assets/images/logo.png", height: 70, width: 70);
 
     TextStyle styleDecoration =
         TextStyle(color: Colors.blueAccent, fontSize: 16);
@@ -112,7 +112,7 @@ class _HomeState extends State<Home> {
 
     Column column = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[icon, containerPaddingFields, containerPaddingBtn],
+      children: <Widget>[imgLogo, containerPaddingFields, containerPaddingBtn],
     );
 
     Form form = Form(
