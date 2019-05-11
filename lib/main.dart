@@ -24,15 +24,21 @@ class _HomeState extends State<Home> {
       ],
     );
 
+    Icon icon = Icon(Icons.wb_sunny, size: 70, color: Colors.yellow);
+
+    TextField tempCelsius = TextField(decoration: InputDecoration(labelText: 'Graus Celsius'), keyboardType: TextInputType.number);
+    TextField tempFahrenheit = TextField(decoration: InputDecoration(labelText: 'Graus Fahrenheit'), keyboardType: TextInputType.number);
+
     Column column = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[],
-
+      children: <Widget>[
+        icon, tempCelsius, tempFahrenheit,
+      ],
     );
 
     Scaffold scaffold = Scaffold(
       appBar: appBar,
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.white,
       body: column,
     );
 
