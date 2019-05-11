@@ -9,19 +9,41 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   TextEditingController celsiusController = TextEditingController();
   TextEditingController fahrenheitController = TextEditingController();
 
-  void _resetFields () {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  void _resetFields() {
     celsiusController.text = "";
     fahrenheitController.text = "";
   }
 
-  void _converter (){
+  void _converter() {
     double celsius = double.parse(celsiusController.text);
     double fahrenheit = celsius * 1.8 + 32.0;
     fahrenheitController.text = fahrenheit.toStringAsFixed(4);
+  }
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text("Atenção"),
+          content: new Text("Informe um valor!"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new FlatButton(
+              child: new Text("Fechar"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -45,21 +67,29 @@ class _HomeState extends State<Home> {
     TextStyle styleField = TextStyle(color: Colors.blueAccent);
 
     RaisedButton raisedButton = RaisedButton(
-      onPressed: _converter,
+      onPressed: () {
+        if (_formKey.currentState.validate()){
+          _converter();
+        }
+      },
       child: Text('Calcular'),
       color: Colors.blueAccent,
     );
 
-    TextField tempCelsius = TextField(
-      decoration: InputDecoration(
-          labelText: 'Graus Celsius', labelStyle: styleDecoration),
-      keyboardType: TextInputType.number,
-      textAlign: TextAlign.center,
-      style: styleField,
-      controller: celsiusController,
-    );
+    TextFormField tempCelsius = TextFormField(
+        decoration: InputDecoration(
+            labelText: 'Graus Celsius', labelStyle: styleDecoration),
+        keyboardType: TextInputType.number,
+        textAlign: TextAlign.center,
+        style: styleField,
+        controller: celsiusController,
+        validator: (value) {
+          if (value.isEmpty) {
+            _showDialog();
+          }
+        });
 
-    TextField tempFahrenheit = TextField(
+    TextFormField tempFahrenheit = TextFormField(
       decoration: InputDecoration(
           labelText: 'Graus Fahrenheit', labelStyle: styleDecoration),
       keyboardType: TextInputType.number,
@@ -85,8 +115,13 @@ class _HomeState extends State<Home> {
       children: <Widget>[icon, containerPaddingFields, containerPaddingBtn],
     );
 
-    SingleChildScrollView singleChildScrollView = SingleChildScrollView(
+    Form form = Form(
       child: column,
+      key: _formKey,
+    );
+
+    SingleChildScrollView singleChildScrollView = SingleChildScrollView(
+      child: form,
     );
 
     Scaffold scaffold = Scaffold(
