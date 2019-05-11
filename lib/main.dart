@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
-  home: Home()
-));
+    debugShowCheckedModeBanner: false,
+    home: Home()));
 
 class Home extends StatefulWidget {
   @override
@@ -12,6 +12,26 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    AppBar appBar = AppBar(
+      title: Text("Conversor de Temperatura"),
+      centerTitle: true,
+      backgroundColor: Colors.blue,
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.refresh),
+          onPressed: RefreshScreen(),
+        )
+      ],
+    );
+
+    Scaffold scaffold = Scaffold(
+      appBar: appBar,
+    );
+
+    return scaffold;
   }
+}
+
+RefreshScreen() {
+  return null;
 }
