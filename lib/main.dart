@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.refresh),
-          onPressed: RefreshScreen(),
+          onPressed: () {},
         )
       ],
     );
@@ -26,32 +26,46 @@ class _HomeState extends State<Home> {
     Icon icon = Icon(Icons.wb_sunny, size: 70, color: Colors.yellow);
 
     TextStyle styleDecoration =
-        TextStyle(color: Colors.blueAccent, fontSize: 20);
+        TextStyle(color: Colors.blueAccent, fontSize: 16);
     TextStyle styleField = TextStyle(color: Colors.blueAccent);
 
+    RaisedButton raisedButton = RaisedButton(
+      onPressed: () {},
+      child: Text('Calcular'),
+      color: Colors.blueAccent,
+    );
+
     TextField tempCelsius = TextField(
-      decoration: InputDecoration(labelText: 'Graus Celsius',
-      labelStyle: styleDecoration),
+      decoration: InputDecoration(
+          labelText: 'Graus Celsius', labelStyle: styleDecoration),
       keyboardType: TextInputType.number,
       textAlign: TextAlign.center,
       style: styleField,
     );
 
     TextField tempFahrenheit = TextField(
-      decoration: InputDecoration(labelText: 'Graus Fahrenheit',
-      labelStyle: styleDecoration),
+      decoration: InputDecoration(
+          labelText: 'Graus Fahrenheit', labelStyle: styleDecoration),
       keyboardType: TextInputType.number,
       textAlign: TextAlign.center,
       style: styleField,
     );
 
+    Container containerPaddingBtn = Container(
+      padding: EdgeInsets.all(8.0),
+      child: raisedButton,
+    );
+
+    Container containerPaddingFields = Container(
+      padding: EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[tempCelsius, tempFahrenheit],
+      ),
+    );
+
     Column column = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        icon,
-        tempCelsius,
-        tempFahrenheit,
-      ],
+      children: <Widget>[icon, containerPaddingFields, containerPaddingBtn],
     );
 
     Scaffold scaffold = Scaffold(
@@ -62,8 +76,4 @@ class _HomeState extends State<Home> {
 
     return scaffold;
   }
-}
-
-RefreshScreen() {
-  return null;
 }
